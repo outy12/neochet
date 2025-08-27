@@ -171,5 +171,53 @@ Node* create_club_decl_node(char* name);
 // ... 其他节点创建函数
 
 void free_node(Node* node);
+typedef struct {
+    char* name;
+    char* base_class;
+    Node** members;
+    int member_count;
+} ClassDecl;
 
+typedef struct {
+    Node** params;
+    int param_count;
+    Node* body;
+    Node* base_call; // 基类构造函数调用
+} ConstructorDecl;
+
+typedef struct {
+    char* name;
+    Node** params;
+    int param_count;
+    char* return_type;
+    Node* body;
+    int is_static;
+} MethodDecl;
+
+typedef struct {
+    char* name;
+    char* type;
+    Node* initial_value;
+    int is_static;
+} FieldDecl;
+
+typedef struct {
+    char* class_name;
+    Node** args;
+    int arg_count;
+} NewExpr;
+
+typedef struct {
+    Node* object;
+    char* member_name;
+} MemberAccess;
+
+typedef struct {
+    Node** args;
+    int arg_count;
+} SuperCall;
+
+typedef struct {
+    // 无额外字段，仅表示 this 关键字
+} ThisExpr;
 #endif
